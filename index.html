@@ -6,15 +6,22 @@
 </head>
 <body>
 
-	<div id=game>
-	
+
+<div>
 	<h1>The Psychic Game</h1>
 	<br>
 	<strong><h2>Guess What Letter I am Thinking Of...</h2></strong>
 	
 	<br><br>
 	<h2>Press your first guess to start playing</h2>
+
+	<br><br>
+
+</div>
+
+	<div id=game>
 	
+
 
 	</div>
 
@@ -41,12 +48,19 @@
 	var GuessesLeft = 9;	 		// Array to capture total number of Guess Left per game
 	var LettersGuessed = []; 		//Array to capture Letters that user Guessed
 	var LetterToGuess = [];			// Array to capture the letters available to guess
+	var computerGuess = computerChoices[Math.floor(Math.random() * computerChoices.length)];
 
 
 // Computer to make a choice
 // Randomly choose a choice from the options array.
 	
-	var computerGuess = computerChoices[Math.floor(Math.random() * computerChoices.length)]; 	
+	function newGame() {
+		GuessesLeft = 9;
+		computerGuess = computerChoices[Math.floor(Math.random() * computerChoices.length)]; 	
+		LettersGuessed = [];
+		console.log(computerGuess);
+
+	};
 
 	console.log(computerGuess);
 
@@ -76,7 +90,7 @@
 		if (userGuess == computerGuess)	{
 
 			Wins++;
-			GuessesLeft = 9;
+			newGame()
 
 		}	else if (userGuess !== computerGuess) {
 
@@ -85,7 +99,7 @@
 		} if (GuessesLeft < 1) {
 
 			Losses++;
-			GuessesLeft = 9;
+			newGame()
 		}
 
 	} else { 
@@ -96,6 +110,7 @@
 
 	var html =
 		"<p>You Choose: " + userGuess + "</p>" +
+		"<p>Previous Guesses: " + LettersGuessed + "</p>" +
 		"<p>Wins: " + Wins + "</p>" +
 		"<p>Losses: " + Losses + "</p>" +
 		"<p>GuessesLeft: " + GuessesLeft + "</p>"
@@ -112,6 +127,7 @@
 // computer is not selecting another value after win or loss.
 // Users current choice is only getting displayed on the screen, past choices are not displaying. It should display all choices on the screen. something to do with Array "LettersGuessed".
 // Once the game is started, "Psychich game" and "Guess what letter I am thinking of" is not displaying on the screen.
+// Reset the previous guess
 
 
 </script>
